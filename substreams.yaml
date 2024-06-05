@@ -1,0 +1,22 @@
+specVersion: v0.1.0
+package:
+  name: antelope_common
+  version: v0.1.0
+  url: https://github.com/pinax-network/substreams-antelope-common
+  doc: Antelope Block Index for transaction traces, actions & database operations.
+
+imports:
+  antelope: https://github.com/pinax-network/firehose-antelope/releases/download/v0.0.5/antelope-v0.0.5.spkg
+
+binaries:
+  default:
+    type: wasm/rust-v1
+    file: ./target/wasm32-unknown-unknown/release/antelope_common.wasm
+
+modules:
+  - name: block_index
+    kind: blockIndex
+    inputs:
+      - source: sf.antelope.type.v1.Block
+    output:
+      type: proto:sf.substreams.index.v1.Keys
